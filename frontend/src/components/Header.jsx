@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ArrowUpRight } from 'lucide-react';
 import Logo from './Logo';
 import { nav, site } from '../mock';
 
 const Header = () => {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -13,18 +14,23 @@ const Header = () => {
     setOpen(false);
   }, [location.pathname]);
 
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 10);
+    onScroll();
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
   const goToAnchor = (href) => {
     if (href.startsWith('/#')) {
       const id = href.replace('/#', '');
       if (location.pathname !== '/') {
         navigate('/');
         setTimeout(() => {
-          const el = document.getElementById(id);
-          if (el) el.scrollIntoView({ behavior: 'smooth' });
-        }, 100);
+          document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+        }, 120);
       } else {
-        const el = document.getElementById(id);
-        if (el) el.scrollIntoView({ behavior: 'smooth' });
+        document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
       }
     } else {
       navigate(href);
@@ -32,15 +38,19 @@ const Header = () => {
   };
 
   return (
-    <header className="w-full bg-white">
-      <div className="max-w-[1500px] mx-auto flex items-center justify-between gap-6 px-6 md:px-10 lg:px-14 py-4">
-        {/* Logo */}
+    <header
+      className={`sticky top-0 z-50 w-full transition-all duration-300 ${
+        scrolled
+          ? 'bg-white/80 backdrop-blur-md border-b border-black/5 shadow-[0_2px_10px_rgba(0,0,0,0.04)]'
+          : 'bg-transparent'
+      }`}
+    >
+      <div className="max-w-[1400px] mx-auto flex items-center justify-between gap-6 px-5 md:px-8 lg:px-12 py-3 md:py-4">
         <Link to="/" aria-label="Sun Coin Laundry home" className="block">
-          <Logo size={96} />
+          <Logo size={68} />
         </Link>
 
-        {/* Desktop nav */}
-        <nav className="hidden lg:flex items-center gap-7 xl:gap-9">
+        <nav className="hidden lg:flex items-center gap-8 xl:gap-10">
           {nav.map((item) => {
             const isActive =
               (item.href === '/' && location.pathname === '/') ||
@@ -49,10 +59,7 @@ const Header = () => {
               <button
                 key={item.href}
                 onClick={() => goToAnchor(item.href)}
-                className={`nav-link text-[15px] font-medium tracking-[0.01em] text-[#0a0a0a] hover:text-[#0a0a0a] transition-colors ${
-                  isActive ? 'active' : ''
-                }`}
-                style={{ fontFamily: 'Archivo, sans-serif' }}
+                className={`nav-link ${isActive ? 'active' : ''}`}
               >
                 {item.label}
               </button>
@@ -60,37 +67,38 @@ const Header = () => {
           })}
         </nav>
 
-        {/* CTA */}
-        <a
-          href={site.directionsUrl}
-          target="_blank"
-          rel="noreferrer"
-          className="hidden md:inline-flex items-center justify-center bg-[#0a0a0a] text-[#fdce21] btn-cta px-7 py-5 hover:bg-[#1a1a1a] transition-colors"
-          style={{ letterSpacing: '0.18em' }}
-        >
-          Get Directions
-        </a>
+        <div className="hidden md:flex items-center gap-3">
+          <a href={`tel:${site.phone.replace(/[^0-9]/g, '')}`} className="nav-link hidden xl:inline">
+            {site.phone}
+          </a>
+          <a
+            href={site.directionsUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="pill pill-dark btn-cta"
+          >
+            Get Directions
+            <ArrowUpRight size={16} />
+          </a>
+        </div>
 
-        {/* Mobile trigger */}
         <button
-          className="lg:hidden text-[#0a0a0a] p-2"
+          className="lg:hidden p-2 rounded-full hover:bg-black/5"
           aria-label="Open menu"
           onClick={() => setOpen((v) => !v)}
         >
-          {open ? <X size={28} /> : <Menu size={28} />}
+          {open ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
-      {/* Mobile dropdown */}
       {open && (
-        <div className="lg:hidden border-t border-[#eee] bg-white">
-          <div className="px-6 py-4 flex flex-col gap-3">
+        <div className="lg:hidden border-t border-black/5 bg-white/95 backdrop-blur">
+          <div className="px-5 py-4 flex flex-col gap-1">
             {nav.map((item) => (
               <button
                 key={item.href}
                 onClick={() => goToAnchor(item.href)}
-                className="text-left text-[16px] text-[#0a0a0a] py-2"
-                style={{ fontFamily: 'Archivo, sans-serif' }}
+                className="text-left text-[16px] text-[#0a0a0a] py-3 border-b border-black/5"
               >
                 {item.label}
               </button>
@@ -99,9 +107,10 @@ const Header = () => {
               href={site.directionsUrl}
               target="_blank"
               rel="noreferrer"
-              className="mt-2 inline-flex items-center justify-center bg-[#0a0a0a] text-[#fdce21] btn-cta px-6 py-4"
+              className="pill pill-dark btn-cta justify-center mt-4"
             >
               Get Directions
+              <ArrowUpRight size={16} />
             </a>
           </div>
         </div>

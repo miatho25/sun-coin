@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Archivo+Narrow:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -8,12 +8,16 @@ html,
 body {
   margin: 0;
   padding: 0;
-  background: #ffffff;
+  background: #faf9f5;
   color: #0a0a0a;
-  font-family: 'Archivo', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: 'Inter', 'Archivo', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 code {
@@ -22,7 +26,7 @@ code {
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
+    --background: 48 30% 97%;
     --foreground: 0 0% 4%;
     --card: 0 0% 100%;
     --card-foreground: 0 0% 4%;
@@ -41,15 +45,16 @@ code {
     --border: 0 0% 90%;
     --input: 0 0% 90%;
     --ring: 0 0% 4%;
-    --radius: 0.25rem;
+    --radius: 0.75rem;
 
     --suncoin-yellow: #fdce21;
+    --suncoin-yellow-soft: #fde27a;
     --suncoin-yellow-deep: #f0bf00;
-    --suncoin-black: #0a0a0a;
+    --suncoin-ink: #0a0a0a;
+    --suncoin-ink-2: #141414;
     --suncoin-cream: #f6efd9;
-    --suncoin-gray: #f4f4f2;
-    --suncoin-blue: #1f4c80;
-    --suncoin-orange: #f7a93c;
+    --suncoin-paper: #faf9f5;
+    --suncoin-line: #e8e6de;
   }
 }
 
@@ -62,82 +67,113 @@ code {
   }
 }
 
-/* Utility typography for the big bold display headings like the original */
-.display-heading {
+/* Typography */
+.font-display {
   font-family: 'Archivo', sans-serif;
   font-weight: 800;
-  letter-spacing: -0.02em;
-  line-height: 1.02;
+  letter-spacing: -0.025em;
+  line-height: 0.98;
 }
 
-.eyebrow {
-  font-family: 'Archivo', sans-serif;
-  font-weight: 700;
+.font-serif-italic {
+  font-family: 'Instrument Serif', serif;
   font-style: italic;
-  letter-spacing: 0.01em;
+  font-weight: 400;
 }
 
 .btn-cta {
   font-family: 'Archivo', sans-serif;
-  font-weight: 700;
-  letter-spacing: 0.22em;
-  font-size: 12px;
-  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  font-size: 14px;
 }
 
-/* Smooth anchor scrolling */
-html {
-  scroll-behavior: smooth;
+/* Grid pattern for hero */
+.grid-pattern {
+  background-image:
+    linear-gradient(to right, rgba(10, 10, 10, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(10, 10, 10, 0.06) 1px, transparent 1px);
+  background-size: 56px 56px;
 }
 
-/* Input styling matching original */
-.scp-input {
-  width: 100%;
-  border: 1px solid #0a0a0a;
+/* Radial glow used behind accent */
+.glow-yellow {
+  background: radial-gradient(60% 60% at 50% 50%, rgba(253, 206, 33, 0.55) 0%, rgba(253, 206, 33, 0) 70%);
+}
+
+/* Pill button */
+.pill {
   border-radius: 9999px;
-  background: transparent;
-  padding: 14px 18px;
-  font-size: 15px;
+  padding: 14px 26px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+.pill:hover {
+  transform: translateY(-1px);
+}
+.pill-dark {
+  background: #0a0a0a;
+  color: #ffffff;
+}
+.pill-dark:hover {
+  background: #1a1a1a;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+}
+.pill-yellow {
+  background: var(--suncoin-yellow);
   color: #0a0a0a;
-  outline: none;
-  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.pill-yellow:hover {
+  background: var(--suncoin-yellow-deep);
+  box-shadow: 0 8px 24px rgba(253, 206, 33, 0.35);
+}
+.pill-outline {
+  background: transparent;
+  color: #0a0a0a;
+  border: 1px solid rgba(10, 10, 10, 0.2);
+}
+.pill-outline:hover {
+  background: #0a0a0a;
+  color: #fff;
 }
 
-.scp-input:focus {
-  border-color: #0a0a0a;
-  box-shadow: 0 0 0 1px #0a0a0a;
-}
-
-.scp-textarea {
+/* Modern inputs */
+.m-input {
   width: 100%;
-  min-height: 130px;
-  border: 1px solid #0a0a0a;
-  border-radius: 18px;
-  background: transparent;
-  padding: 14px 18px;
+  border: 1px solid rgba(10, 10, 10, 0.14);
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 14px 16px;
   font-size: 15px;
   color: #0a0a0a;
   outline: none;
-  resize: vertical;
   transition: border-color 0.15s ease, box-shadow 0.15s ease;
-  font-family: 'Archivo', sans-serif;
+  font-family: inherit;
 }
-
-.scp-textarea:focus {
+.m-input:focus {
   border-color: #0a0a0a;
-  box-shadow: 0 0 0 1px #0a0a0a;
+  box-shadow: 0 0 0 3px rgba(253, 206, 33, 0.5);
+}
+.m-textarea {
+  min-height: 140px;
+  resize: vertical;
 }
 
-/* Hover underline for nav links */
+/* Nav link hover */
 .nav-link {
   position: relative;
-  padding-bottom: 4px;
+  color: #0a0a0a;
+  font-weight: 500;
+  font-size: 14px;
+  transition: color 0.2s ease;
 }
 .nav-link::after {
   content: '';
   position: absolute;
   left: 0;
-  bottom: 0;
+  bottom: -6px;
   width: 0;
   height: 2px;
   background: #0a0a0a;
@@ -148,6 +184,74 @@ html {
   width: 100%;
 }
 
-.nav-link-yellow::after {
-  background: var(--suncoin-yellow);
+/* Marquee */
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 38s linear infinite;
+}
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Image hover zoom */
+.img-zoom {
+  overflow: hidden;
+}
+.img-zoom img {
+  transition: transform 0.7s ease;
+}
+.img-zoom:hover img {
+  transform: scale(1.05);
+}
+
+/* Accordion */
+details.modern-acc {
+  border-bottom: 1px solid var(--suncoin-line);
+}
+details.modern-acc summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 22px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  font-weight: 600;
+  font-size: 18px;
+  color: #0a0a0a;
+  font-family: 'Archivo', sans-serif;
+}
+details.modern-acc summary::-webkit-details-marker {
+  display: none;
+}
+details.modern-acc .acc-plus {
+  width: 28px;
+  height: 28px;
+  border-radius: 9999px;
+  background: #0a0a0a;
+  color: #fdce21;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.25s ease;
+}
+details.modern-acc[open] .acc-plus {
+  transform: rotate(45deg);
+}
+details.modern-acc .acc-body {
+  padding: 0 0 22px 0;
+  color: rgba(10, 10, 10, 0.72);
+  line-height: 1.65;
+  font-size: 15.5px;
 }
