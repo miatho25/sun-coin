@@ -12,7 +12,6 @@ const ServiceCard = ({ service, onCta }) => (
         src={service.image}
         alt={service.title}
         className="w-full h-full object-cover"
-        style={{ filter: 'grayscale(100%)' }}
       />
       <div className="absolute top-4 left-4 text-[#fdce21]">
         <span

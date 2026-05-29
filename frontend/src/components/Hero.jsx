@@ -1,7 +1,7 @@
 import React from 'react';
 import { ArrowUpRight, Sparkles, Clock, MapPin, Star } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { site, heroImage } from '../mock';
+import { site, heroImage, ribbonImage } from '../mock';
 import Reveal from './Reveal';
 
 const Hero = () => (
@@ -18,8 +18,13 @@ const Hero = () => (
         {/* Left content */}
         <div className="lg:col-span-7">
           <Reveal>
-            <div className="inline-flex items-center gap-2 bg-[#0a0a0a] text-[#fdce21] px-4 py-2 rounded-full text-[12px] tracking-[0.14em] uppercase">
-              <Star size={14} fill="#fdce21" strokeWidth={0} />
+            <div className="inline-flex items-center gap-3 bg-[#0a0a0a] text-[#fdce21] pl-2 pr-5 py-1.5 rounded-full text-[12px] tracking-[0.14em] uppercase">
+              <img
+                src={ribbonImage}
+                alt=""
+                className="w-7 h-7 rounded-full object-cover"
+                draggable={false}
+              />
               {site.badge}
             </div>
           </Reveal>
@@ -102,7 +107,6 @@ const Hero = () => (
                 src={heroImage}
                 alt="Commercial laundromat washing machines"
                 className="w-full h-full object-cover"
-                style={{ filter: 'grayscale(100%) contrast(1.05)' }}
               />
               {/* Floating review card */}
               <div className="absolute left-5 bottom-5 right-5 md:left-6 md:right-auto md:bottom-6 bg-white/95 backdrop-blur rounded-2xl p-4 md:p-5 flex items-center gap-4 shadow-[0_10px_30px_rgba(0,0,0,0.25)]">

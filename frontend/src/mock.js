@@ -43,19 +43,21 @@ export const stats = [
   { value: '15', label: 'Min wash cycles', suffix: 'min' },
 ];
 
-export const heroImage =
-  'https://images.unsplash.com/photo-1657064575960-efefbe831c2e?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NDh8MHwxfHNlYXJjaHwyfHxjb21tZXJjaWFsJTIwbGF1bmRyb21hdCUyMHdhc2hlcnN8ZW58MHx8fGJsYWNrX2FuZF93aGl0ZXwxNzc2OTEwNzg2fDA&ixlib=rb-4.1.0&q=85';
+// Original images from the Squarespace site CDN (public URLs)
+const SQS = 'https://images.squarespace-cdn.com/content/v1/69e97e38eb65671fbdf33239';
 
-export const contactImage =
-  'https://images.unsplash.com/photo-1580175767167-8cd2e8a992f1?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1Mjh8MHwxfHNlYXJjaHwxfHxsYXVuZHJvbWF0JTIwbmlnaHR8ZW58MHx8fGJsYWNrX2FuZF93aGl0ZXwxNzc2OTEwODAwfDA&ixlib=rb-4.1.0&q=85';
+export const logoImage = `${SQS}/1776909889366-L8E68GLS6RHBHM1MAAZI/ChatGPT+Image+Sep+20%2C+2025%2C+02_52_18+AM.png?format=1500w`;
+export const ribbonImage = `${SQS}/1776909884952-ATGPHTM5ZMOC5W8SFG9J/gold-and-black-award-with-ribbons-vector-44875601.webp`;
+
+export const heroImage = `${SQS}/1776909884962-AQIYHU5R064N43PKXAXB/unsplash-image-z3QaK44YPYc.jpg`;
+export const contactImage = `${SQS}/1776909886265-1C7CG07OO3B42GHIS0X1/unsplash-image-kE279Rg_wcM.webp`;
 
 export const services = [
   {
     id: 'self-service',
     number: '01',
     title: 'Self-Service Laundry',
-    image:
-      'https://images.unsplash.com/photo-1765163076573-26499e530ec8?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NTN8MHwxfHNlYXJjaHwxfHxsYXVuZHJvbWF0JTIwaW50ZXJpb3J8ZW58MHx8fHwxNzc2OTEwNzkwfDA&ixlib=rb-4.1.0&q=85',
+    image: `${SQS}/1776909884970-BL6QQMB000DOE53CEYY5/unsplash-image-4H2W_Lslju8.webp`,
     blurb:
       'Wash and dry on your schedule using brand-new, large-capacity machines. Perfect for everyday, bulky items and families.',
     highlights: [
@@ -70,8 +72,7 @@ export const services = [
     id: 'wash-and-fold',
     number: '02',
     title: 'Wash & Fold',
-    image:
-      'https://images.unsplash.com/photo-1630329273801-8f629dba0a72?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1MDZ8MHwxfHNlYXJjaHwxfHxmb2xkZWQlMjBsYXVuZHJ5fGVufDB8fHx8MTc3NjkxMDc5NHww&ixlib=rb-4.1.0&q=85',
+    image: `${SQS}/1776909884980-E2C2PHZ8ZNP78MTRKJ9G/unsplash-image-APUvZYCjPJ0.webp`,
     blurb:
       'Short on time? Drop off your laundry and let us handle the rest. Convenient, reliable, perfect for busy families.',
     highlights: [
@@ -86,8 +87,7 @@ export const services = [
     id: 'commercial',
     number: '03',
     title: 'Commercial Laundry',
-    image:
-      'https://images.unsplash.com/photo-1765021690100-db6d6a28c1d1?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODB8MHwxfHNlYXJjaHwxfHxjb21tZXJjaWFsJTIwaW5kdXN0cmlhbCUyMGxhdW5kcnl8ZW58MHx8fHwxNzc2OTEwNzk2fDA&ixlib=rb-4.1.0&q=85',
+    image: `${SQS}/1776909884988-QOPZ0USVY6Y92CW4L5GJ/unsplash-image-NPPNHZK1U0s.webp`,
     blurb:
       'Reliable laundry solutions for restaurants, gyms, salons, and small businesses. Consistent, professional turnaround.',
     highlights: [
