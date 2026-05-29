@@ -149,7 +149,7 @@ export const faqs = [
   },
   {
     q: 'Do you accept credit cards?',
-    a: 'Yes — our machines accept coins, loadable laundry cards, and major credit/debit cards.',
+    a: 'Yes — our machines accept coins and mobile payment.',
   },
   {
     q: 'How long does wash & fold take?',
