@@ -9,7 +9,7 @@ export const site = {
   address: '4195 Jonesboro Rd.',
   city: 'Forest Park, GA 30297',
   email: 'suncoin4195@icloud.com',
-  phone: '(678)-555-5555',
+  phone: '(404)-669-6380',
   directionsUrl:
     'https://www.google.com/maps/dir/?api=1&destination=4195+Jonesboro+Rd,+Forest+Park,+GA+30297',
   hours: 'Open 7 Days',
